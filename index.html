@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智慧化太陽能電廠AI維運系統 - 產學合作提案</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23FFD700" width="1200" height="600"/><g fill="%23FF6B35" opacity="0.8"><circle cx="200" cy="150" r="80"/><circle cx="600" cy="300" r="120"/><circle cx="1000" cy="200" r="100"/></g><g fill="%234ECDC4" opacity="0.6"><rect x="100" y="400" width="200" height="100" rx="20"/><rect x="500" y="450" width="200" height="100" rx="20"/><rect x="900" y="350" width="200" height="100" rx="20"/></g></svg>');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, #FF6B35, #F7931E, #FFD700);
+            opacity: 0.8;
+            z-index: -1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            background: rgba(255,255,255,0.15);
+            padding: 15px 30px;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            display: inline-block;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #4ECDC4, #44A08D);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInUp 1s ease 0.9s both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .section:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            color: #2c3e50;
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, #FF6B35, #4ECDC4);
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .benefit-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 3px solid transparent;
+            background-clip: padding-box;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            border-color: #4ECDC4;
+        }
+
+        .benefit-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: linear-gradient(45deg, #FF6B35, #F7931E);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            box-shadow: 0 5px 20px rgba(255, 107, 53, 0.3);
+        }
+
+        .benefit-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        .roi-highlight {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .roi-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 40px 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: scale(1.05);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #FFD700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .stat-label {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .tech-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .tech-card {
+            background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%);
+            color: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tech-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            transition: transform 0.3s ease;
+        }
+
+        .tech-card:hover::before {
+            transform: scale(1.5);
+        }
+
+        .tech-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tech-card p {
+            position: relative;
+            z-index: 1;
+            line-height: 1.7;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 50px auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background: linear-gradient(45deg, #FF6B35, #4ECDC4);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background: linear-gradient(45deg, #FF6B35, #4ECDC4);
+            border-radius: 50%;
+            top: 20px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .timeline-item:nth-child(even)::after {
+            left: -10px;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-left: 5px solid #4ECDC4;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            border-left: none;
+            border-right: 5px solid #FF6B35;
+        }
+
+        .contact-section {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            text-align: center;
+            padding: 80px 0;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section h2 {
+                font-size: 2rem;
+            }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item::after {
+                left: 21px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0%;
+            }
+        }
+
+        .highlight-number {
+            color: #FF6B35;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .value-proposition {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            margin: 40px 0;
+            border-radius: 20px;
+        }
+
+        .drone-advantage {
+            background: rgba(76, 205, 196, 0.1);
+            padding: 40px;
+            border-radius: 15px;
+            border-left: 5px solid #4ECDC4;
+            margin: 30px 0;
+        }
+
+        .solution-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .solution-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border-top: 4px solid #FF6B35;
+            transition: transform 0.3s ease;
+        }
+
+        .solution-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .premium-tech {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 80px 0;
+        }
+
+        .premium-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .premium-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(15px);
+            padding: 40px 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .premium-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(45deg, #FFD700, #FF6B35, #4ECDC4);
+        }
+
+        .premium-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 25px;
+            background: linear-gradient(45deg, #FFD700, #FF6B35);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .feature-comparison {
+            background: #f8f9fa;
+            padding: 80px 0;
+        }
+
+        .comparison-table {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+            margin-top: 50px;
+        }
+
+        .comparison-header {
+            background: linear-gradient(45deg, #FF6B35, #F7931E);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .comparison-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            border-bottom: 1px solid #eee;
+        }
+
+        .comparison-cell {
+            padding: 25px;
+            text-align: center;
+            border-right: 1px solid #eee;
+        }
+
+        .comparison-cell:last-child {
+            border-right: none;
+        }
+
+        .comparison-cell h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .advantage-mark {
+            color: #4ECDC4;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .precision-showcase {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .precision-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .precision-stat {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 30px 20px;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .precision-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #FFD700;
+            margin-bottom: 10px;
+        }
+
+        .integration-flow {
+            background: white;
+            padding: 80px 0;
+        }
+
+        .flow-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .flow-step {
+            background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%);
+            color: white;
+            padding: 30px 25px;
+            border-radius: 20px;
+            text-align: center;
+            min-width: 200px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .flow-step::after {
+            content: '→';
+            position: absolute;
+            right: -25px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: #2c3e50;
+        }
+
+        .flow-step:last-child::after {
+            display: none;
+        }
+
+        .flow-number {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 768px) {
+            .flow-step::after {
+                content: '↓';
+                right: 50%;
+                bottom: -25px;
+                top: auto;
+                transform: translateX(50%);
+            }
+
+            .comparison-row {
+                grid-template-columns: 1fr;
+            }
+
+            .comparison-cell {
+                border-right: none;
+                border-bottom: 1px solid #eee;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>智慧化太陽能電廠AI維運系統</h1>
+            <p>運用AI與無人機技術，為您的11MW太陽能電廠創造最大效益</p>
+            <div class="hero-subtitle">
+                🎯 整合DJI Matrice 4T + D-RTK 3基地台 + AI分析平台
+            </div>
+            <a href="#benefits" class="cta-button">了解效益回報</a>
+        </div>
+    </section>
+
+    <!-- ROI Highlight Section -->
+    <section class="roi-highlight">
+        <div class="container">
+            <h2>您的投資回報預估</h2>
+            <p style="font-size: 1.3rem; margin-bottom: 30px;">基於嘉義新港11MW電廠，日照3.35小時，每度電收益8.35元計算</p>
+            
+            <div class="roi-stats">
+                <div class="stat-card">
+                    <div class="stat-number">5-15%</div>
+                    <div class="stat-label">發電效率提升預估</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">150-450萬</div>
+                    <div class="stat-label">年度額外收益（新台幣）</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">80%</div>
+                    <div class="stat-label">人工巡檢成本節省</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">即時監控與預警</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Premium Technology Section -->
+    <section class="premium-tech">
+        <div class="container">
+            <h2>頂級設備整合方案</h2>
+            <p style="font-size: 1.3rem; text-align: center; margin-bottom: 30px;">
+                採用DJI最新專業級設備，提供業界最高精度的太陽能電廠維運解決方案
+            </p>
+            
+            <div class="premium-grid">
+                <div class="premium-card">
+                    <div class="premium-icon">🚁</div>
+                    <h3>DJI Matrice 4T</h3>
+                    <p><strong>多功能專業無人機</strong><br>
+                    • 紅外線溫度檢測（640×512解析度）<br>
+                    • 高解析度RGB相機（4K/30fps）<br>
+                    • 變焦功能（4倍光學+8倍數位）<br>
+                    • 精密測繪功能整合<br>
+                    • 45分鐘超長續航力</p>
+                </div>
+                
+                <div class="premium-card">
+                    <div class="premium-icon">📡</div>
+                    <h3>D-RTK 3 多功能基地台</h3>
+                    <p><strong>高精度定位系統</strong><br>
+                    • 公分級定位精度（RTK技術）<br>
+                    • 支援多頻段GNSS接收<br>
+                    • 15公里作業半徑<br>
+                    • 雲端同步與資料管理<br>
+                    • 全天候穩定運作</p>
+                </div>
+                
+                <div class="premium-card">
+                    <div class="premium-icon">🤖</div>
+                    <h3>AI智慧分析平台</h3>
+                    <p><strong>深度學習異常偵測</strong><br>
+                    • 熱影像自動異常辨識<br>
+                    • SolarEdge數據串接分析<br>
+                    • 即時預警通報系統<br>
+                    • 維運決策支援儀表板<br>
+                    • 歷史趨勢分析與預測</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Precision Showcase -->
+    <section class="precision-showcase">
+        <div class="container">
+            <h2>突破性精度表現</h2>
+            <p style="font-size: 1.3rem; margin-bottom: 30px;">
+                D-RTK 3基地台結合Matrice 4T，實現前所未有的測繪與檢測精度
+            </p>
+            
+            <div class="precision-stats">
+                <div class="precision-stat">
+                    <div class="precision-number">±2cm</div>
+                    <div>水平定位精度</div>
+                </div>
+                <div class="precision-stat">
+                    <div class="precision-number">±3cm</div>
+                    <div>垂直定位精度</div>
+                </div>
+                <div class="precision-stat">
+                    <div class="precision-number">0.1°C</div>
+                    <div>溫度檢測精度</div>
+                </div>
+                <div class="precision-stat">
+                    <div class="precision-number">15km</div>
+                    <div>RTK作業半徑</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Integration Flow -->
+    <section class="integration-flow">
+        <div class="container">
+            <h2>智慧整合作業流程</h2>
+            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 30px;">
+                從精密測繪到AI分析，一站式解決方案
+            </p>
+            
+            <div class="flow-container">
+                <div class="flow-step">
+                    <div class="flow-number">1</div>
+                    <h4>D-RTK 3基地台</h4>
+                    <p>建立高精度<br>定位基準</p>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-number">2</div>
+                    <h4>Matrice 4T巡檢</h4>
+                    <p>精密測繪+<br>熱影像檢測</p>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-number">3</div>
+                    <h4>AI數據分析</h4>
+                    <p>異常自動辨識<br>與分類標註</p>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-number">4</div>
+                    <h4>即時預警</h4>
+                    <p>維運決策<br>支援系統</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature Comparison -->
+    <section class="feature-comparison">
+        <div class="container">
+            <h2>技術優勢比較</h2>
+            
+            <div class="comparison-table">
+                <div class="comparison-header">
+                    <h3>我們的解決方案 VS 傳統維運方式</h3>
+                </div>
+                
+                <div class="comparison-row">
+                    <div class="comparison-cell">
+                        <h4>檢測項目</h4>
+                    </div>
+                    <div class="comparison-cell">
+                        <h4>傳統人工巡檢</h4>
+                    </div>
+                    <div class="comparison-cell">
+                        <h4>我們的AI+無人機方案</h4>
+                    </div>
+                </div>
+                
+                <div class="comparison-row">
+                    <div class="comparison-cell">
+                        <strong>檢測精度</strong>
+                    </div>
+                    <div class="comparison-cell">
+                        依經驗判斷<br>誤差率高
+                    </div>
+                    <div class="comparison-cell">
+                        <span class="advantage-mark">公分級定位<br>0.1°C溫度精度</span>
+                    </div>
+                </div>
+                
+                <div class="comparison-row">
+                    <div class="comparison-cell">
+                        <strong>檢測範圍</strong>
+                    </div>
+                    <div class="comparison-cell">
+                        受限於人力<br>無法全面覆蓋
+                    </div>
+                    <div class="comparison-cell">
+                        <span class="advantage-mark">11MW全場域<br>100%覆蓋率</span>
+                    </div>
+                </div>
+                
+                <div class="comparison-row">
+                    <div class="comparison-cell">
+                        <strong>檢測頻率</strong>
+                    </div>
+                    <div class="comparison-cell">
+                        每月1-2次<br>定期巡檢
+                    </div>
+                    <div class="comparison-cell">
+                        <span class="advantage-mark">每週自動巡檢<br>24/7即時監控</span>
+                    </div>
+                </div>
+                
+                <div class="comparison-row">
+                    <div class="comparison-cell">
+                        <strong>人力成本</strong>
+                    </div>
+                    <div class="comparison-cell">
+                        高昂人力成本<br>專業人員需求
+                    </div>
+                    <div class="comparison-cell">
+                        <span class="advantage-mark">節省80%人力<br>自動化作業</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="section" id="benefits">
+        <div class="container">
+            <h2>產學合作為您帶來的核心效益</h2>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">📐</div>
+                    <h3>高精度測繪建模</h3>
+                    <p>結合D-RTK 3基地台與Matrice 4T，建立<span class="highlight-number">公分級精度</span>的3D電廠模型，精確掌握每個太陽能板位置與狀態</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">🌡️</div>
+                    <h3>精密溫度檢測</h3>
+                    <p>紅外線熱像儀<span class="highlight-number">0.1°C精度</span>檢測，及早發現熱斑異常，預防火災風險並提升發電效率</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">🎯</div>
+                    <h3>AI智慧異常偵測</h3>
+                    <p>自動辨識汙損、破片、接線異常等問題，減少<span class="highlight-number">90%</span>的誤判率，提前預防故障發生</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">📊</div>
+                    <h3>SolarEdge數據整合</h3>
+                    <p>即時監控串列電流、電壓、溫度，建立正常運轉模型，優化發電效率<span class="highlight-number">5-15%</span></p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">💰</div>
+                    <h3>顯著經濟效益</h3>
+                    <p>每年預估可額外創造<span class="highlight-number">150-450萬元</span>收益，投資回收期僅需<span class="highlight-number">2-3年</span></p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">🛡️</div>
+                    <h3>專業法規處理</h3>
+                    <p>我們處理所有無人機飛行申請與紅區限制，讓您專注營運，無需擔心法規困擾</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 解決紅區飛行問題 -->
+    <section class="section">
+        <div class="container">
+            <h2>專業解決無人機紅區飛行挑戰</h2>
+            
+            <div class="drone-advantage">
+                <h3>🎯 為什麼選擇我們處理無人機飛行？</h3>
+                <div class="solution-grid">
+                    <div class="solution-card">
+                        <h4>📋 完整法規申請</h4>
+                        <p>專業團隊熟悉民航局申請流程，包含飛行計畫書、安全評估報告等所有必要文件</p>
+                    </div>
+                    <div class="solution-card">
+                        <h4>⏱️ 快速核准流程</h4>
+                        <p>與相關單位建立良好關係，大幅縮短申請等待時間，讓巡檢作業準時進行</p>
+                    </div>
+                    <div class="solution-card">
+                        <h4>🛡️ 專業飛行執照</h4>
+                        <p>持有合格無人機操作證照，確保所有飛行作業符合法規要求</p>
+                    </div>
+                    <div class="solution-card">
+                        <h4>📍 精準飛行規劃</h4>
+                        <p>運用D-RTK 3基地台進行精密航線規劃，在法規限制下達到最大巡檢效果</p>
+                    </div>
+                </div>
+                
+                <div class="value-proposition">
+                    <h3>讓專業的來！您只需坐享成果</h3>
+                    <p style="font-size: 1.2rem; margin-top: 20px;">
+                        我們承擔所有法規風險與申請流程，您無需投入人力處理複雜的飛行申請，
+                        <br><strong>專注於核心營運，讓發電效益最大化！</strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Advanced Technology Integration -->
+    <section class="section">
+        <div class="container">
+            <h2>D-RTK 3 基地台創新應用亮點</h2>
+            
+            <div class="tech-showcase">
+                <div class="tech-card">
+                    <h3>🎯 公分級精準定位</h3>
+                    <p>D-RTK 3提供±2cm水平精度定位，讓每次巡檢路徑完全一致，確保異常比對的準確性。結合Matrice 4T的測繪功能，建立電廠的精密3D模型</p>
+                </div>
+                
+                <div class="tech-card">
+                    <h3>📡 多頻段GNSS技術</h3>
+                    <p>支援GPS、GLONASS、BDS、Galileo多重衛星系統，即使在複雜環境下也能維持穩定的高精度定位，保證巡檢作業的可靠性</p>
+                </div>
+                
+                <div class="tech-card">
+                    <h3>🔄 自動化巡檢排程</h3>
+                    <p>透過精準的RTK定位，建立標準化巡檢路徑，實現全自動巡檢作業。系統可依據天氣、日照條件自動調整巡檢頻率</p>
+                </div>
+                
+                <div class="tech-card">
+                    <h3>📊 即時數據同步</h3>
+                    <p>D-RTK 3支援雲端即時數據傳輸，巡檢結果即時上傳分析，讓維運團隊能在第一時間掌握電廠狀態並採取對應措施</p>
+                </div>
+                
+                <div class="tech-card">
+                    <h3>🗺️ 高精度測繪建模</h3>
+                    <p>Matrice 4T結合D-RTK 3進行高精度測繪，建立電廠完整的數位孿生模型，為後續擴建、維護提供精確的空間資訊</p>
+                </div>
+                
+                <div class="tech-card">
+                    <h3>⚡ 即時異常定位</h3>
+                    <p>當AI系統偵測到異常時，RTK精準定位可立即標註問題位置座標，維修人員能快速找到故障點，大幅縮短維修時間</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mapping Integration Benefits -->
+    <section class="section">
+        <div class="container">
+            <h2>高精度測繪整合效益</h2>
+            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 50px;">
+                Matrice 4T的測繪功能結合D-RTK 3基地台，為太陽能電廠創造多重價值
+            </p>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">🏗️</div>
+                    <h3>數位孿生建模</h3>
+                    <p>建立電廠完整的3D數位模型，精確記錄每個太陽能板的位置、角度、狀態，為智慧維運提供基礎資料</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">📏</div>
+                    <h3>變形監測預警</h3>
+                    <p>定期高精度測繪可監測支架變形、地基沉降等結構問題，及早發現並預防重大事故發生</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">🎯</div>
+                    <h3>精準維修導航</h3>
+                    <p>故障點GPS座標精確定位，維修人員可直接導航至問題位置，大幅提升維修效率</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">📈</div>
+                    <h3>效能區域分析</h3>
+                    <p>結合地理資訊與發電數據，分析不同區域的發電效能差異，優化電廠整體配置</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">🔍</div>
+                    <h3>陰影影響評估</h3>
+                    <p>精密測繪結合日照模擬，分析建築物、設備陰影對發電的影響，優化太陽能板佈局</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">🛠️</div>
+                    <h3>擴建規劃支援</h3>
+                    <p>提供精確的地形資料與現況測繪，為未來擴建計畫提供可靠的設計基礎</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="section">
+        <div class="container">
+            <h2>兩年期計畫時程規劃</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>第一年 (2025/7-2026/6)</h3>
+                        <p><strong>建立核心系統</strong><br>
+                        • D-RTK 3基地台佈建與校正<br>
+                        • AI影像辨識模型訓練<br>
+                        • SolarEdge數據平台整合<br>
+                        • 高精度測繪基礎建立<br>
+                        • 原型系統驗證與首次場域測試</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>第二年 (2026/7-2027/6)</h3>
+                        <p><strong>擴大應用效益</strong><br>
+                        • 多場域測試驗證<br>
+                        • AI模型持續優化<br>
+                        • 自動化巡檢系統完善<br>
+                        • 維運效益完整評估<br>
+                        • 標準SOP建立與技術移轉</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <h2>立即開始您的智慧維運之路</h2>
+            <p style="font-size: 1.3rem; margin: 30px 0;">
+                與我們合作，讓AI技術與高精度設備為您的太陽能電廠創造更大價值
+            </p>
+            
+            <div style="margin: 40px 0;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;">
+                    <div style="background: rgba(255,255,255,0.1); padding: 30px; border-radius: 15px;">
+                        <h4>💡 預估年收益增加</h4>
+                        <p style="font-size: 1.5rem; color: #FFD700; margin-top: 10px;">150-450萬元</p>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 30px; border-radius: 15px;">
+                        <h4>⚡ 發電效率提升</h4>
+                        <p style="font-size: 1.5rem; color: #4ECDC4; margin-top: 10px;">5-15%</p>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 30px; border-radius: 15px;">
+                        <h4>🎯 投資回收期</h4>
+                        <p style="font-size: 1.5rem; color: #FF6B35; margin-top: 10px;">2-3年</p>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 30px; border-radius: 15px;">
+                        <h4>📐 定位精度</h4>
+                        <p style="font-size: 1.5rem; color: #FFD700; margin-top: 10px;">±2cm</p>
+                    </div>
+                </div>
+            </div>
+            
+            <p style="margin-top: 40px; font-size: 1.1rem;">
+                聯絡我們了解更多詳情，開始您的智慧太陽能維運升級計畫
+            </p>
+        </div>
+    </section>
+
+    <script>
+        // 簡單的滾動動畫
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.benefit-card, .tech-card, .stat-card, .premium-card');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        }
+
+        // 初始化動畫樣式
+        document.addEventListener('DOMContentLoaded', function() {
+            const elements = document.querySelectorAll('.benefit-card, .tech-card, .stat-card, .premium-card');
+            elements.forEach(element => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(20px)';
+                element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            });
+            
+            // 監聽滾動事件
+            window.addEventListener('scroll', animateOnScroll);
+            
+            // 初始檢查
+            animateOnScroll();
+        });
+
+        // 平滑滾動到指定區域
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 數字動畫效果
+        function animateNumbers() {
+            const numberElements = document.querySelectorAll('.stat-number, .precision-number');
+            
+            numberElements.forEach(element => {
+                const rect = element.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    if (!element.classList.contains('animated')) {
+                        element.classList.add('animated');
+                        const finalText = element.textContent;
+                        const hasPercent = finalText.includes('%');
+                        const hasPlus = finalText.includes('+');
+                        const hasMinus = finalText.includes('-');
+                        
+                        if (!isNaN(parseInt(finalText))) {
+                            const finalNumber = parseInt(finalText);
+                            let currentNumber = 0;
+                            const increment = finalNumber / 30;
+                            
+                            const timer = setInterval(() => {
+                                currentNumber += increment;
+                                if (currentNumber >= finalNumber) {
+                                    element.textContent = finalText;
+                                    clearInterval(timer);
+                                } else {
+                                    let displayNumber = Math.floor(currentNumber);
+                                    if (hasPercent) displayNumber += '%';
+                                    if (hasPlus) displayNumber = '+' + displayNumber;
+                                    if (hasMinus) displayNumber = '±' + displayNumber;
+                                    element.textContent = displayNumber;
+                                }
+                            }, 50);
+                        }
+                    }
+                }
+            });
+        }
+
+        window.addEventListener('scroll', animateNumbers);
+        document.addEventListener('DOMContentLoaded', animateNumbers);
+    </script>
+</body>
+</html>
+                
+                
